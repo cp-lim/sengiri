@@ -7,20 +7,25 @@ from setuptools import setup
 
 install_requires = ['emoji'] if pkgutil.find_loader('MeCab') else ['emoji', 'mecab']
 
+def load_requirements():
+    with open('./requirements.txt') as requirements_file:
+        return [r.strip() for r in requirements_file.read().split()]
+
+
 with open(os.path.join('sengiri', '__init__.py'), 'r', encoding='utf8') as f:
     version = re.compile(
         r".*__version__ = '(.*?)'", re.S).match(f.read()).group(1)
 
 setup(
-    name='sengiri',
+    name='sengiri-fork',
     packages=['sengiri'],
     version=version,
     license='MIT License',
     platforms=['POSIX', 'Windows', 'Unix', 'MacOS'],
-    description='Yet another sentence-level tokenizer for the Japanese text',
-    author='Yukino Ikegami',
-    author_email='yknikgm@gmail.com',
-    url='https://github.com/ikegami-yukino/sengiri',
+    description='Yet another fork of sentence-level tokenizer for the Japanese text',
+    author='CPLim',
+    author_email='',
+    url='https://github.com/cp-lim/sengiri',
     keywords=['japanese', 'tokenizer', 'sentence', 'sentence-tokenizer'],
     classifiers=[
         'Development Status :: 3 - Alpha',
@@ -40,7 +45,7 @@ setup(
         ],
     long_description='%s\n\n%s' % (open('README.rst', encoding='utf8').read(),
                                    open('CHANGES.rst', encoding='utf8').read()),
-    install_requires=install_requires,
+    install_requires=load_requirements(),
     tests_require=['nose'],
     test_suite='nose.collector'
 )

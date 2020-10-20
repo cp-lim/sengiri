@@ -11,6 +11,6 @@ Lisence:
     MIT License
 """
 
-VERSION = (0, 2, 2)
-__version__ = '0.2.2'
+VERSION = (0, 1, 0)
+__version__ = '0.1.0'
 __all__ = ['tokenize']

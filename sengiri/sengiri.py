@@ -27,8 +27,9 @@ def _analyze_by_mecab(line, mecab_args, emoji_threshold):
     result = [[]]
     has_delimiter_flag = False
     emoji_count = 0
-
-    for (i, (surface, features)) in enumerate(pairs[:-1]):
+    for i, surface_features in enumerate(pairs[:-1]):
+        surface = surface_features[0]
+        features = surface_features[4]
         if all(c in EMOJIS for c in surface):
             emoji_count += len(surface)
             if result and emoji_count >= emoji_threshold and pairs[i+1][0] not in EMOJIS:
@@ -63,7 +64,6 @@ def _analyze_by_mecab(line, mecab_args, emoji_threshold):
 
 def tokenize(doc, mecab_args='', emoji_threshold=3, parenthesis_threshold=10):
     """Split document into sentences
-
     Parameters
     ----------
     doc : str
@@ -74,7 +74,6 @@ def tokenize(doc, mecab_args='', emoji_threshold=3, parenthesis_threshold=10):
         The numbers of emoji as sentence delimiter
     parenthesis_threshold : int
         The numbers of characters in parenthesis to delimit doc
-
     Return
     ------
     list
