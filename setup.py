@@ -17,7 +17,7 @@ with open(os.path.join('sengiri', '__init__.py'), 'r', encoding='utf8') as f:
         r".*__version__ = '(.*?)'", re.S).match(f.read()).group(1)
 
 setup(
-    name='sengiri-fork',
+    name='sengirifix',
     packages=['sengiri'],
     version=version,
     license='MIT License',
